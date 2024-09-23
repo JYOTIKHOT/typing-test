@@ -4,6 +4,7 @@ import Right from "../../assets/test-bg-right.png";
 import Textarea from "../../components/Textarea/Textarea";
 import Timer from "../../components/Timer/Timer";
 import { Box, Stack, Typography } from "@mui/material";
+import TextAreaNew from "../../components/Textarea/TextAreaNew";
 
 function HomePage() {
   const [triggerTimer, setTriggerTimer] = useState(true);
@@ -46,7 +47,8 @@ function HomePage() {
               resetTrigger={() => setTriggerTimer(false)}
             />
           </Box>
-          <Textarea />
+          {/* <Textarea /> */}
+          <TextAreaNew />
         </Stack>
       </Box>
     </>

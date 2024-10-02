@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Card, Stack, Typography } from "@mui/material";
 
+import { longestCommonSubstring } from "../../utils";
+
 const TextArea = ({ onFirstKeyDown, words, typedWords, handleTypedWord }) => {
   const [remainingWords, setRemainingWords] = useState(words);
   const [activeWord, setActiveWord] = useState("");
@@ -20,7 +22,7 @@ const TextArea = ({ onFirstKeyDown, words, typedWords, handleTypedWord }) => {
       const newRange = document.createRange();
       const newSelection = window.getSelection();
       if (e.target.childNodes[0]) {
-        newRange.setStart(e.target?.childNodes?.[0], caretPosition);
+        newRange.setStart(e.target.childNodes[0], caretPosition);
         newRange.collapse(true);
         newSelection.removeAllRanges();
         newSelection.addRange(newRange);
@@ -31,6 +33,11 @@ const TextArea = ({ onFirstKeyDown, words, typedWords, handleTypedWord }) => {
   useEffect(() => {
     setRemainingWords(words);
   }, [words]);
+
+  const getRemainingWord = (word) => {
+    const longestSubString = longestCommonSubstring([activeWord, word]);
+    return word.substring(longestSubString.length);
+  };
 
   const handleNextWord = (e) => {
     if (e.key === " " || e.key === "Enter") {
@@ -95,6 +102,12 @@ const TextArea = ({ onFirstKeyDown, words, typedWords, handleTypedWord }) => {
             sx={{
               caretColor: "black",
               outline: "none",
+              textDecoration:
+                activeWord.length ===
+                longestCommonSubstring([activeWord, remainingWords.at(0)?.word])
+                  ?.length
+                  ? "none"
+                  : "line-through",
             }}
             onKeyDown={handleNextWord}
           >
@@ -109,9 +122,7 @@ const TextArea = ({ onFirstKeyDown, words, typedWords, handleTypedWord }) => {
         >
           {remainingWords.map(({ word, id }, i) => (
             <Typography variant="h4" key={id}>
-              {word.includes(activeWord) && i === 0
-                ? word.substring(word.indexOf(activeWord) + activeWord.length)
-                : word}
+              {i === 0 ? getRemainingWord(word) : word}
             </Typography>
           ))}
         </Stack>

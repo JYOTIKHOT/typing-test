@@ -15,9 +15,6 @@
     background-color: black;
     /* Color of the caret */
     animation: blink 1s steps(2, start) infinite;
-    /* Blinking effect */
-    pointer-events: none;
-    /* Prevent interference with text input */
 }
 
 @keyframes blink {

@@ -1,5 +1,6 @@
 import { CircularProgress, Stack, Typography } from "@mui/material";
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import GradientCircularProgress from "./GradientCircularProgress";
 
 const Timer = ({ triggerTimer, resetTrigger }) => {
   const [time, setTime] = useState(60); // Start from 60 seconds
@@ -52,13 +53,11 @@ const Timer = ({ triggerTimer, resetTrigger }) => {
       position="relative"
       sx={{ backgroundColor: "white", borderRadius: "50%" }}
     >
-      <CircularProgress
+      <GradientCircularProgress
         variant="determinate"
-        color={triggerTimer ? "success" : "error"}
         size="120px"
-        thickness={2}
+        thickness={2.5}
         value={Math.round((time * 5) / 3)}
-        sx={{ animation: "all 1s smooth" }}
       />
       <Stack
         position="absolute"

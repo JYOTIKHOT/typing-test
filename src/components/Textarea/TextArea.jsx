@@ -102,7 +102,7 @@ const TextArea = ({
           <Typography
             component="div"
             variant="h4"
-            color="blue"
+            color="#e01cd5"
             ref={textAreaRef}
             contentEditable="true"
             className="custom-cursor"

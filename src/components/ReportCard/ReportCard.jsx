@@ -5,17 +5,26 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import Slide from "@mui/material/Slide";
-import { DialogTitle, IconButton } from "@mui/material";
+import { DialogTitle, IconButton, Stack, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import turtle from "../../assets/sad-turtle-final.png";
+import octopus from "../../assets/octopus.jpeg";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function ReportCard({ open, handleClose, wpm, cpm, accuracy }) {
+export default function ReportCard({
+  open,
+  handleClose,
+  wpm = 50,
+  cpm,
+  accuracy,
+}) {
   return (
     <>
       <Dialog
+        fullWidth
         open={open}
         TransitionComponent={Transition}
         keepMounted
@@ -37,13 +46,40 @@ export default function ReportCard({ open, handleClose, wpm, cpm, accuracy }) {
           </IconButton>
         </DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
-            Awesome! You type with the speed of {wpm} WPM ({cpm} CPM). Your
-            accuracy was {accuracy}%. Congratulations!
-          </DialogContentText>
+          <Stack direction="row" spacing={3}>
+            <img
+              width={250}
+              height={225}
+              src={wpm < 35 ? turtle : octopus}
+              alt="Doodle"
+            />
+            <Stack spacing={3} p={3}>
+              <Typography variant="h4" fontWeight="bold">
+                U r {wpm < 35 ? "Turtle :(" : "Octopus:)"}
+              </Typography>
+              <DialogContentText id="alert-dialog-slide-description">
+                {wpm < 35 ? "Well... " : "Awesome! "} You type with the speed of{" "}
+                <b>
+                  {wpm} WPM ({cpm} CPM)
+                </b>
+                . Your accuracy was <b>{accuracy}%</b>. Congratulations!
+              </DialogContentText>
+            </Stack>
+          </Stack>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Try Again</Button>
+          <Stack pb={2} pr={3}>
+            <Button
+              sx={{
+                background: "linear-gradient(90deg, #e01cd5 0%, #1CB5E0 100%)",
+              }}
+              variant="contained"
+              onClick={handleClose}
+              size="large"
+            >
+              Try Again
+            </Button>
+          </Stack>
         </DialogActions>
       </Dialog>
     </>

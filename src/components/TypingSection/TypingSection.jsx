@@ -12,6 +12,8 @@ const TypingSection = () => {
   const [wpm, setWpm] = useState(0);
   const [cpm, setCpm] = useState(0);
   const [accuracy, setAccuracy] = useState(0);
+
+  const [activeWord, setActiveWord] = useState("");
   const [words, setWords] = useState(() =>
     generate(500).map((word, i) => ({ word, id: i }))
   );
@@ -45,6 +47,7 @@ const TypingSection = () => {
     setCpm(0);
     setWpm(0);
     setAccuracy(0);
+    setActiveWord("");
   };
 
   return (
@@ -75,6 +78,8 @@ const TypingSection = () => {
           setTypedWords={setTypedWords}
           handleTypedWord={handleTypedWord}
           onFirstKeyDown={() => setTriggerTimer(true)}
+          activeWord={activeWord}
+          setActiveWord={setActiveWord}
         />
       </Stack>
     </Stack>

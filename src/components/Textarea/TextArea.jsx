@@ -3,9 +3,17 @@ import { Card, Stack, Typography } from "@mui/material";
 
 import { longestCommonSubstring } from "../../utils";
 
-const TextArea = ({ onFirstKeyDown, words, typedWords, handleTypedWord }) => {
+import "./TextArea.css";
+
+const TextArea = ({
+  onFirstKeyDown,
+  words,
+  typedWords,
+  handleTypedWord,
+  activeWord,
+  setActiveWord,
+}) => {
   const [remainingWords, setRemainingWords] = useState(words);
-  const [activeWord, setActiveWord] = useState("");
   const textAreaRef = useRef();
 
   const handleTyping = (e) => {
@@ -62,6 +70,7 @@ const TextArea = ({ onFirstKeyDown, words, typedWords, handleTypedWord }) => {
       }}
     >
       <Stack
+        onClick={() => textAreaRef.current?.focus()}
         flexDirection="row"
         alignItems="center"
         overflow="hidden"
@@ -96,12 +105,11 @@ const TextArea = ({ onFirstKeyDown, words, typedWords, handleTypedWord }) => {
             color="blue"
             ref={textAreaRef}
             contentEditable="true"
+            className="custom-cursor"
             autoCorrect={false}
             spellCheck={false}
             onInput={handleTyping}
             sx={{
-              caretColor: "black",
-              outline: "none",
               textDecoration:
                 activeWord.length ===
                 longestCommonSubstring([activeWord, remainingWords.at(0)?.word])

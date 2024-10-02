@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/typing-test/static/css/main.dbcd5564.css",
-    "main.js": "/typing-test/static/js/main.5e0af075.js",
+    "main.js": "/typing-test/static/js/main.7e1e42f1.js",
     "static/media/sad-turtle-final.png": "/typing-test/static/media/sad-turtle-final.3b26b231386d9bc7465b.png",
     "static/media/octopus.jpeg": "/typing-test/static/media/octopus.27e045359cf99a2fad91.jpeg",
     "index.html": "/typing-test/index.html",
     "main.dbcd5564.css.map": "/typing-test/static/css/main.dbcd5564.css.map",
-    "main.5e0af075.js.map": "/typing-test/static/js/main.5e0af075.js.map"
+    "main.7e1e42f1.js.map": "/typing-test/static/js/main.7e1e42f1.js.map"
   },
   "entrypoints": [
     "static/css/main.dbcd5564.css",
-    "static/js/main.5e0af075.js"
+    "static/js/main.7e1e42f1.js"
   ]
 }

@@ -48,12 +48,12 @@ const TextArea = ({
   };
 
   const handleNextWord = (e) => {
-    if (e.key === " " || e.key === "Enter") {
-      e.preventDefault();
-      handleTypedWord(activeWord, remainingWords[0].word);
-      setRemainingWords(remainingWords.slice(1));
-      setActiveWord("");
-    }
+    if (![" ", "Enter"].includes(e.key)) return;
+    e.preventDefault();
+    if (activeWord === "") return;
+    handleTypedWord(activeWord, remainingWords[0].word);
+    setRemainingWords(remainingWords.slice(1));
+    setActiveWord("");
   };
 
   useEffect(() => {
@@ -105,7 +105,6 @@ const TextArea = ({
             color="#e01cd5"
             ref={textAreaRef}
             contentEditable="true"
-            className="custom-cursor"
             autoCorrect={false}
             spellCheck={false}
             onInput={handleTyping}
@@ -116,6 +115,9 @@ const TextArea = ({
                   ?.length
                   ? "none"
                   : "line-through",
+              caretColor: "black",
+              outline: "none",
+              position: "relative",
             }}
             onKeyDown={handleNextWord}
           >
